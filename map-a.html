@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
     <title>Seattle Rent</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
@@ -52,22 +53,10 @@
                     <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="map-a.html">Map A</a>
+                    <a class="nav-link" href="map-a.html">Seattle Rent</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="map-b.html">Map B</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                </li>
-                <!-- Create a dropdown tab tha shows more available pages for the user to see -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-                    <div class="dropdown-menu" aria-labelledby="dropdown01">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
                 </li>
             </ul>
             <!-- Creates a search bar for the user to use -->
@@ -129,7 +118,7 @@
         }
 
         AvgRent = L.geoJson.ajax("assets/NRent.geojson", {
-            attribution: '',
+            attribution: '| Basemap: cartocdn | Rent Data: RENTCafe | Neighborhoods: Seattle Geodata |',
             onEachFeature: function(feature, layer) {
                 if (!feature.properties.NRent_AverageRent) {
                     layer.bindPopup(feature.properties.S_HOOD + "<br> No Data Available");
@@ -169,7 +158,7 @@
         }
 
         StudioRent = L.geoJson.ajax("assets/NRent.geojson", {
-            attribution: '',
+            attribution: '| Basemap: cartocdn | Rent Data: Zumper | Neighborhoods: Seattle Geodata |',
             onEachFeature: function(feature, layer) {
                 if (!feature.properties.NRent_AvgStudio) {
                     layer.bindPopup(feature.properties.S_HOOD + "<br> No Data Available");
@@ -209,7 +198,7 @@
         }
 
         OneBedRent = L.geoJson.ajax("assets/NRent.geojson", {
-            attribution: '',
+            attribution: '| Basemap: cartocdn | Rent Data: Zumper | Neighborhoods: Seattle Geodata |',
             onEachFeature: function(feature, layer) {
                 if (!feature.properties.NRent_AvgOneBed) {
                     layer.bindPopup(feature.properties.S_HOOD + "<br> No Data Available");
@@ -249,7 +238,7 @@
         }
 
         TwoBedRent = L.geoJson.ajax("assets/NRent.geojson", {
-            attribution: '',
+            attribution: '| Basemap: cartocdn | Rent Data: Zumper | Neighborhoods: Seattle Geodata |',
             onEachFeature: function(feature, layer) {
                 if (!feature.properties.NRent_AvgTwoBed) {
                     layer.bindPopup(feature.properties.S_HOOD + "<br> No Data Available");
@@ -289,7 +278,7 @@
         }
 
         ThreeBedRent = L.geoJson.ajax("assets/NRent.geojson", {
-            attribution: '',
+            attribution: '| Basemap: cartocdn | Rent Data: Zumper | Neighborhoods: Seattle Geodata |',
             onEachFeature: function(feature, layer) {
                 if (!feature.properties.NRent_AvgThreeBed) {
                     layer.bindPopup(feature.properties.S_HOOD + "<br> No Data Available");
@@ -310,16 +299,53 @@
 
         legend.onAdd = function() {
             var div = L.DomUtil.create('div', 'legend');
-            div.innerHTML += '<b> Traffic Flow Counts</b><br />';
-            div.innerHTML += '<i style="background: #ffffcc; opacity: 0.5"></i><p> 21622 - 41474 Vehicles per hour</p>';
-            div.innerHTML += '<i style="background: #ffe692; opacity: 0.5"></i><p> 9698 - 21621 Vehicles per hour</p>';
-            div.innerHTML += '<i style="background: #febf5a; opacity: 0.5"></i><p> 5939 - 9697 Vehicles per hour</p>';
-            div.innerHTML += '<i style="background: #fd8d3c; opacity: 0.5"></i><p> 3384 - 5938 Vehicles per hour</p>';
-            div.innerHTML += '<i style="background: #f43d25; opacity: 0.5"></i><p> 0 - 3383 Vehicles per hour</p>';
-            div.innerHTML += '<i style="background: #ca0923; opacity: 0.5"></i><p> 0 - 3383 Vehicles per hour</p>';
-            div.innerHTML += '<i style="background: #800026; opacity: 0.5"></i><p> 0 - 3383 Vehicles per hour</p>';
+            div.innerHTML += '<b> Neighborhood Average Rent</b><br />';
+            div.innerHTML += '<i style="background: #ffffcc; opacity: 0.5"></i><p> No Data Available</p>';
+            div.innerHTML += '<i style="background: #ffe692; opacity: 0.5"></i><p> Under $1645</p>';
+            div.innerHTML += '<i style="background: #febf5a; opacity: 0.5"></i><p> $1645 - $1718</p>';
+            div.innerHTML += '<i style="background: #fd8d3c; opacity: 0.5"></i><p> $1718 - $ 1776</p>';
+            div.innerHTML += '<i style="background: #f43d25; opacity: 0.5"></i><p> $1776 - $1869</p>';
+            div.innerHTML += '<i style="background: #ca0923; opacity: 0.5"></i><p> $1869 - $1908</p>';
+            div.innerHTML += '<i style="background: #800026; opacity: 0.5"></i><p> More Than $1908</p>';
             return div;
         };
+
+        Transit = L.geoJson.ajax("assets/Transit_Routes_for_King_County_Metro___transitroute_line.geojson", {
+            attribution: 'Transit Lines: King County GIS Open Data |',
+            onEachFeature: function(feature, layer) {
+                layer.bindPopup(feature.properties.ROUTE_NUM);
+            },
+            style: {
+                color: '#990aec',
+                opacity: 0.75,
+                weight: 3,
+            }
+        });
+
+        Line = L.geoJson.ajax("assets/LinkLine.geojson", {
+            attribution: 'Link Line Shapefile: SoundTransit Open Transit Data |',
+            onEachFeature: function(feature, layer) {
+                layer.bindPopup(feature.properties.DESCRIPTIO);
+            },
+            style: {
+                color: '#000'
+            }
+        })
+
+        Stations = L.geoJson.ajax("assets/LinkStations.geojson", {
+            attribution: 'Link Stations Shapefile: SoundTransit Open Transit Data |',
+            onEachFeature: function(feature, layer) {
+                layer.bindPopup(feature.properties.STATION);
+            },
+        })
+
+        MHA = L.geoJson.ajax("assets/Mandatory_Housing_Affordability__MHA__Zones.geojson", {
+            attribtution: 'MHA Zones: Seattle Geodata |',
+            color: '#5e765d',
+            opacity: 0.75,
+            fillColor: '#5e765d',
+            fillOpacity: 0.5
+        })
 
         legend.addTo(mymap);
 
@@ -332,7 +358,10 @@
         }
 
         var overlays = {
-
+            'King County Metro Bus Lines': Transit,
+            'Sound Transit Link Light Rail Line': Line,
+            'Sound Transit Link Light Rail Stations': Stations,
+            'Mandatory Housing Affordability (MHA) Zones': MHA
         };
 
         L.control.layers(baseLayers, overlays, {
