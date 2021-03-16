@@ -84,11 +84,6 @@
         // 3. Creates a color scale from colorbrewer (chroma.js) - 'YlOrRd' - for the
         // counts of cell towers on the map.
         var colors = chroma.scale('YlOrRd').colors(7);
-        console.log(colors)
-
-        var legend = L.control({
-            position: "bottomright"
-        });
 
         // 4. setColor function that takes in the density (count of cell towers per county)
         // and assigns a color in accordance to the color scale - 'YlOrRd'
@@ -292,18 +287,123 @@
             }
         });
 
-        legend.onAdd = function() {
+        AvgRentLegend = function() {
             var div = L.DomUtil.create('div', 'legend');
             div.innerHTML += '<b> Neighborhood Average Rent</b><br />';
             div.innerHTML += '<i style="background: #ffffcc; opacity: 0.5"></i><p> No Data Available</p>';
             div.innerHTML += '<i style="background: #ffe692; opacity: 0.5"></i><p> Under $1645</p>';
             div.innerHTML += '<i style="background: #febf5a; opacity: 0.5"></i><p> $1645 - $1718</p>';
-            div.innerHTML += '<i style="background: #fd8d3c; opacity: 0.5"></i><p> $1718 - $ 1776</p>';
+            div.innerHTML += '<i style="background: #fd8d3c; opacity: 0.5"></i><p> $1718 - $1776</p>';
             div.innerHTML += '<i style="background: #f43d25; opacity: 0.5"></i><p> $1776 - $1869</p>';
             div.innerHTML += '<i style="background: #ca0923; opacity: 0.5"></i><p> $1869 - $1908</p>';
             div.innerHTML += '<i style="background: #800026; opacity: 0.5"></i><p> More Than $1908</p>';
             return div;
-        };
+        }
+
+        AvgStudioLegend = function() {
+            var div = L.DomUtil.create('div', 'legend');
+            div.innerHTML += '<b> Neighborhood Average Studio Rent</b><br />';
+            div.innerHTML += '<i style="background: #ffffcc; opacity: 0.5"></i><p> No Data Available</p>';
+            div.innerHTML += '<i style="background: #ffe692; opacity: 0.5"></i><p> Under $975</p>';
+            div.innerHTML += '<i style="background: #febf5a; opacity: 0.5"></i><p> $975 - $1095</p>';
+            div.innerHTML += '<i style="background: #fd8d3c; opacity: 0.5"></i><p> $1095 - $1150</p>';
+            div.innerHTML += '<i style="background: #f43d25; opacity: 0.5"></i><p> $1150 - $1225</p>';
+            div.innerHTML += '<i style="background: #ca0923; opacity: 0.5"></i><p> $1225 - $1365</p>';
+            div.innerHTML += '<i style="background: #800026; opacity: 0.5"></i><p> More Than $1365</p>';
+            return div;
+        }
+
+        AvgOneBedLegend = function() {
+            var div = L.DomUtil.create('div', 'legend');
+            div.innerHTML += '<b> Neighborhood Average One Bedroom Rent</b><br />';
+            div.innerHTML += '<i style="background: #ffffcc; opacity: 0.5"></i><p> No Data Available</p>';
+            div.innerHTML += '<i style="background: #ffe692; opacity: 0.5"></i><p> Under $1250</p>';
+            div.innerHTML += '<i style="background: #febf5a; opacity: 0.5"></i><p> $1250 - $1350</p>';
+            div.innerHTML += '<i style="background: #fd8d3c; opacity: 0.5"></i><p> $1350 - $1433.57</p>';
+            div.innerHTML += '<i style="background: #f43d25; opacity: 0.5"></i><p> $1433.57 - $1495</p>';
+            div.innerHTML += '<i style="background: #ca0923; opacity: 0.5"></i><p> $1495 - $1662.57</p>';
+            div.innerHTML += '<i style="background: #800026; opacity: 0.5"></i><p> More Than $1662.57</p>';
+            return div;
+        }
+
+        AvgTwoBedLegend = function() {
+            var div = L.DomUtil.create('div', 'legend');
+            div.innerHTML += '<b> Neighborhood Average Two Bedroom Rent</b><br />';
+            div.innerHTML += '<i style="background: #ffffcc; opacity: 0.5"></i><p> No Data Available</p>';
+            div.innerHTML += '<i style="background: #ffe692; opacity: 0.5"></i><p> Under $1649.43</p>';
+            div.innerHTML += '<i style="background: #febf5a; opacity: 0.5"></i><p> $1649.43 - $1799.57</p>';
+            div.innerHTML += '<i style="background: #fd8d3c; opacity: 0.5"></i><p> $1799.57 - $1933.57</p>';
+            div.innerHTML += '<i style="background: #f43d25; opacity: 0.5"></i><p> $1933.57 - $2070</p>';
+            div.innerHTML += '<i style="background: #ca0923; opacity: 0.5"></i><p> $2070 - $2317</p>';
+            div.innerHTML += '<i style="background: #800026; opacity: 0.5"></i><p> More Than $2317</p>';
+            return div;
+        }
+
+        AvgThreeBedLegend = function() {
+            var div = L.DomUtil.create('div', 'legend');
+            div.innerHTML += '<b> Neighborhood Average Three Bedroom Rent</b><br />';
+            div.innerHTML += '<i style="background: #ffffcc; opacity: 0.5"></i><p> No Data Available</p>';
+            div.innerHTML += '<i style="background: #ffe692; opacity: 0.5"></i><p> Under $1923.57</p>';
+            div.innerHTML += '<i style="background: #febf5a; opacity: 0.5"></i><p> $1923.57 - $2464.29</p>';
+            div.innerHTML += '<i style="background: #fd8d3c; opacity: 0.5"></i><p> $2464.29 - $2697.14</p>';
+            div.innerHTML += '<i style="background: #f43d25; opacity: 0.5"></i><p> $2697.14 - $2962.86</p>';
+            div.innerHTML += '<i style="background: #ca0923; opacity: 0.5"></i><p> $2962.86 - $3245.71</p>';
+            div.innerHTML += '<i style="background: #800026; opacity: 0.5"></i><p> More Than $3245.71</p>';
+            return div;
+        }
+
+        var legendRent = L.control({
+            position: "bottomright"
+        });
+
+        var legendStudio = L.control({
+            position: "bottomright"
+        });
+
+        var legendOneBed = L.control({
+            position: "bottomright"
+        });
+
+        var legendTwoBed = L.control({
+            position: "bottomright"
+        });
+
+        var legendThreeBed = L.control({
+            position: "bottomright"
+        });
+
+        legendRent.onAdd = AvgRentLegend;
+        legendStudio.onAdd = AvgStudioLegend;
+        legendOneBed.onAdd = AvgOneBedLegend;
+        legendTwoBed.onAdd = AvgTwoBedLegend;
+        legendThreeBed.onAdd = AvgThreeBedLegend;
+
+        legendRent.addTo(mymap);
+        currentLegend = legendRent;
+
+        mymap.on('baselayerchange', function(eventLayer) {
+            if (eventLayer.name === 'Average Rent') {
+                mymap.removeControl(currentLegend);
+                currentLegend = legendRent;
+                legendRent.addTo(mymap);
+            } else if (eventLayer.name === 'Average Studio Rent') {
+                mymap.removeControl(currentLegend);
+                currentLegend = legendStudio;
+                legendStudio.addTo(mymap);
+            } else if (eventLayer.name === 'Average One Bedroom Rent') {
+                mymap.removeControl(currentLegend);
+                currentLegend = legendOneBed;
+                legendOneBed.addTo(mymap);
+            } else if (eventLayer.name === 'Average Two Bedroom Rent') {
+                mymap.removeControl(currentLegend);
+                currentLegend = legendTwoBed;
+                legendTwoBed.addTo(mymap);
+            } else if (eventLayer.name === 'Average Three Bedroom Rent') {
+                mymap.removeControl(currentLegend);
+                currentLegend = legendThreeBed;
+                legendThreeBed.addTo(mymap);
+            }
+        })
 
         Transit = L.geoJson.ajax("assets/Transit_Routes_for_King_County_Metro___transitroute_line.geojson", {
             attribution: 'Transit Lines: King County GIS Open Data |',
@@ -343,8 +443,6 @@
                 fillOpacity: 0.5
             }
         })
-
-        legend.addTo(mymap);
 
         var baseLayers = {
             'Average Rent': AvgRent,
