@@ -1,50 +1,118 @@
 <!doctype html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-  <script src="js/bootstrap.bundle.min.js"></script>
-  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <style>
+        /* how to make a div take the remaining height
+  https://www.whitebyte.info/programming/css/how-to-make-a-div-take-the-remaining-height */
+        
+        html,
+        body,
+        main {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-flow: column;
+        }
+        
+        #map {
+            flex-grow: 1;
+        }
+    </style>
 </head>
+
 <body>
-  <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="map-a.html">Map A</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="map-b.html">Map B</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-          <div class="dropdown-menu" aria-labelledby="dropdown01">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
-        </li>
-      </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-      </form>
-    </div>
-  </nav>
-  <main role="main" class="container">
-  </main>
+        <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="map-a.html">Seattle Rent</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="map-b.html">Seattle Zoning</a>
+                </li>
+
+        </div>
+    </nav>
+    <main role="main" class="container">
+        <br>
+        <br>
+        <br>
+        <h1>Seattle Rent and Zoning</h1>
+        <h3>By Logan Selley</h3>
+        <blockquote>
+            <p>A set of two webmaps that attempt to illustrate both Seattle rent costs and their relative distribution as well as offer some additional insight into why areas are priced the way they are beyond just simple demand.</p>
+        </blockquote>
+        <blockquote>
+            <p>The first map aims to show the distribution of Seattle rent prices for housing sizes ranging from studio to 3 bedrooms as well as the overall average for the recognized neighborhood. The second map depicts Seattle zoning, which has an immense
+                effect on not just what kind of housing an area has, but the number of units in an area that may be available.</p>
+        </blockquote>
+        <blockquote>
+            <p>For additional context and to add more potential uses, overlays have been added for both maps that include public transit routes for both King County Metro and the Sound Transit Link Light Rail as well as zones that have been designated for
+                Mandatory Housing Affordability where new developments in these upzoned areas must contribute to affordable housing which could offer additional insight.</p>
+        </blockquote>
+        <h2>Goal</h2>
+        <blockquote>
+            <p>Provide people the tools to understand Seattle housing costs and hopefully emphasize the need for continued upzoning for additional density to accomodate for rising demand and continued increasing prices</p>
+        </blockquote>
+        <h2>Data Sources</h2>
+        <h3><a href="https://data-seattlecitygis.opendata.arcgis.com/datasets/city-clerk-neighborhoods?geometry=-123.248%2C47.450%2C-121.018%2C47.774">City Clerk Neighborhoods</a></h3>
+        <blockquote>
+            <p>Shapefile of Seattle neighborhoods as measured by the city clerk in 2018 from Seattle Geodata</p>
+        </blockquote>
+        <h3><a href="https://data-seattlecitygis.opendata.arcgis.com/datasets/dc24930c704a4ad0bb5af952ee28eb82_11/data?geometry=-123.453%2C47.454%2C-121.223%2C47.778">Zoning - Generalized</a></h3>
+        <blockquote>
+            <p>Shapefile of Seattle Zoning with data from the Office of Planning &amp; Community Development, last updated in 2019 and sourced from Seattle Geodata</p>
+        </blockquote>
+        <h3><a href="https://data-seattlecitygis.opendata.arcgis.com/datasets/cce94a62698640b59031ae35292acfe5_0?geometry=-123.314%2C47.454%2C-121.084%2C47.778">Mandatory Housing Affordability (MHA) Zones</a></h3>
+        <blockquote>
+            <p>Zoning areas where MHA requirements apply to new development as of late 2020 with data from the Office of Planning &amp; Community Development, sourced from Seattle Geodata</p>
+        </blockquote>
+        <h3><a href="https://gis-kingcounty.opendata.arcgis.com/datasets/transit-routes-for-king-county-metro-transitroute-line?geometry=-122.443%2C47.654%2C-122.164%2C47.695">Transit Routes for King County Metro</a></h3>
+        <blockquote>
+            <p>Shapefile of King County Metro’s bus lines throughout King County sourced from King County GIS Open Data</p>
+        </blockquote>
+        <h3>
+            <a id="SoundTransit_Open_Transit_Datahttpswwwsoundtransitorghelpcontactsbusinessinformationopentransitdataotdotddownloads_31"></a><a href="https://www.soundtransit.org/help-contacts/business-information/open-transit-data-otd/otd-downloads">SoundTransit Open Transit Data</a></h3>
+        <blockquote>
+            <p>GIS data for all of Sound Transit’s bus and rail services</p>
+        </blockquote>
+        <h3><a href="https://www.rentcafe.com/average-rent-market-trends/us/wa/seattle/">RentCafe Seattle</a></h3>
+        <blockquote>
+            <p class="has-line-data" data-line-start="37" data-line-end="38">Data used to create a table for neighborhood wide average rents for Seattle</p>
+        </blockquote>
+        <h3><a href="https://www.zumper.com/rent-research/seattle-wa">Zumper Seattle</a></h3>
+        <blockquote>
+            <p>Data used to create a table for specific average rents based on housing size for Seattle</p>
+        </blockquote>
+        <h2>Applied Libraries</h2>
+        <ul>
+            <li><a href="https://leafletjs.com/">leafletjs</a></li>
+            <li><a href="https://getbootstrap.com/">Bootstrap</a></li>
+            <li><a href="https://gka.github.io/chroma.js/">chroma.js</a></li>
+            <li><a href="https://carto.com/basemaps/">CartoBasemaps</a></li>
+            <li><a href="https://cdnjs.com/libraries/leaflet-ajax">leaflet-ajax</a></li>
+        </ul>
+        <br>
+        <br>
+        <br>
+    </main>
 </body>
+
 </html>

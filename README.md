@@ -1,12 +1,13 @@
 # Seattle Rent and Zoning
 
-``` css
-    A set of two webmaps that attempt to illustrate both Seattle rent costs and their relative distribution as well as offer some additional insight into why areas are priced the way they are beyond just simple demand. 
-    
-    The first map aims to show the distribution of Seattle rent prices for housing sizes ranging from studio to 3 bedrooms as well as the overall average for the recognized neighborhood. The second map depicts Seattle zoning, which has an immense effect on not just what kind of housing an area has, but the number of units in an area that may be available. 
+## by Logan Selley
 
-    For additional context and to add more potential uses, overlays have been added for both maps that include public transit routes for both King County Metro and the Sound Transit Link Light Rail as well as zones that have been designated for Mandatory Housing Affordability where new developments in these upzoned areas must contribute to affordable housing which could offer additional insight. 
-```
+>A set of two webmaps that attempt to illustrate both Seattle rent costs and their relative distribution as well as offer some additional insight into why areas are priced the way they are beyond just simple demand.
+
+>The first map aims to show the distribution of Seattle rent prices for housing sizes ranging from studio to 3 bedrooms as well as the overall average for the recognized neighborhood. The second map depicts Seattle zoning, which has an immense effect on not just what kind of housing an area has, but the number of units in an area that may be available.
+
+>For additional context and to add more potential uses, overlays have been added for both maps that include public transit routes for both King County Metro and the Sound Transit Link Light Rail as well as zones that have been designated for Mandatory Housing Affordability where new developments in these upzoned areas must contribute to affordable housing which could offer additional insight.
+
 
 ## Goal
 
