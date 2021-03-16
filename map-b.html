@@ -163,7 +163,7 @@ https://www.whitebyte.info/programming/css/how-to-make-a-div-take-the-remaining-
         Neighborhoods = L.geoJson.ajax("assets/NRent.geojson", {
             attribution: 'Seattle Neighborhoods Shapefile: Seattle Geodata |',
             onEachFeature: function(feature, layer) {
-                if (!feature.properties.NRent_AvgThreeBed) {
+                if (!feature.properties.NRent_AverageRent) {
                     layer.bindPopup(feature.properties.S_HOOD + "<br> No Data Available");
                 } else {
                     layer.bindPopup(feature.properties.S_HOOD + "<br> Average Rent: $" + feature.properties.NRent_AverageRent);
