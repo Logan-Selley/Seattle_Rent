@@ -56,14 +56,9 @@
                     <a class="nav-link" href="map-a.html">Seattle Rent</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="map-b.html">Map B</a>
+                    <a class="nav-link" href="map-b.html">Seattle Zoning</a>
                 </li>
             </ul>
-            <!-- Creates a search bar for the user to use -->
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-                <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-            </form>
         </div>
     </nav>
     <main role="main">
@@ -341,10 +336,12 @@
 
         MHA = L.geoJson.ajax("assets/Mandatory_Housing_Affordability__MHA__Zones.geojson", {
             attribtution: 'MHA Zones: Seattle Geodata |',
-            color: '#5e765d',
-            opacity: 0.75,
-            fillColor: '#5e765d',
-            fillOpacity: 0.5
+            style: {
+                color: '#5e765d',
+                opacity: 0.75,
+                fillColor: '#5e765d',
+                fillOpacity: 0.5
+            }
         })
 
         legend.addTo(mymap);
