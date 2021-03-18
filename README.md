@@ -13,6 +13,14 @@
 
 > Provide people the tools to understand Seattle housing costs and hopefully emphasize the need for continued upzoning for additional density to accomodate for rising demand and continued increasing prices
 
+## Preliminary Findings
+
+> Drawing any conclusive findings purely from correlation between rent costs and area zoning is impossible for a number of external factors to these visualizations since I am not considering any measure of housing availability and demand or
+land value for these areas. It is also true that on this neighborhood level, there are numerous areas that contain a mix of multiple zonings, which goes past the specicifity of our data to draw conclusions from. That being said however,
+when examining some of this data, pricing averages for single family and multi-family areas is largely similar despite differences in the number of units that these lots can hold, but we do see that areas with mixed-use zoning have some
+level of increase in comparrison to the lower zoned residential areas. It should come as no real surprise that prices decrease the further out from the city center you go with a few notable exceptions such as West Seattle with Alki and
+Seaview. MHA zoning is heavily clustered around downtown, but still spreads well into north and south Seattle, which should allow more affordable options for housing going forward.
+
 ## Data Sources
 
 ### [City Clerk Neighborhoods](https://data-seattlecitygis.opendata.arcgis.com/datasets/city-clerk-neighborhoods?geometry=-123.248%2C47.450%2C-121.018%2C47.774)
@@ -50,3 +58,4 @@
 - [chroma.js](https://gka.github.io/chroma.js/)
 - [CartoBasemaps](https://carto.com/basemaps/)
 - [leaflet-ajax](https://cdnjs.com/libraries/leaflet-ajax)
+- [Font Awesome](https://fontawesome.com/)

@@ -9,6 +9,7 @@
     <title>Seattle Rent</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+    <script src="https://kit.fontawesome.com/4935c55256.js" crossorigin="anonymous"></script>
     <style>
         /* how to make a div take the remaining height
   https://www.whitebyte.info/programming/css/how-to-make-a-div-take-the-remaining-height */
@@ -40,7 +41,7 @@
 <body>
     <!-- Uses a bootstrap template to create a navigation bar -->
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Navbar</a>
+        <i class="fas fa-truck-moving" style="color:#fff"></i>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -49,10 +50,10 @@
          represents a disabled/discountinued feature -->
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
+                <li class="nav-item">
                     <a class="nav-link" href="index.html">Home </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item active">
                     <a class="nav-link" href="map-a.html">Seattle Rent <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
@@ -372,6 +373,19 @@
             position: "bottomright"
         });
 
+        var legendexplanation = L.control({
+            position: "topleft"
+        })
+
+        legendexplanation.onAdd = function() {
+            var div = L.DomUtil.create('div', 'legend');
+            div.innerHTML += '<b>Seattle Rent</b><br />';
+            div.innerHTML += '<p>Showing the distribution of rent costs broken down by housing size and city neighborhood and including transit reference layers and an MHA layer to illustrate where urban housing is likely available.</p>';
+            return div;
+        }
+
+        legendexplanation.addTo(mymap);
+
         legendRent.onAdd = AvgRentLegend;
         legendStudio.onAdd = AvgStudioLegend;
         legendOneBed.onAdd = AvgOneBedLegend;
@@ -429,9 +443,17 @@
 
         Stations = L.geoJson.ajax("assets/LinkStations.geojson", {
             attribution: 'Link Stations Shapefile: SoundTransit Open Transit Data |',
+            pointToLayer: function(feature, latlng) {
+                marker = L.marker(latlng, {
+                    icon: L.divIcon({
+                        className: 'fas fa-subway',
+                    })
+                })
+                return marker;
+            },
             onEachFeature: function(feature, layer) {
                 layer.bindPopup(feature.properties.STATION);
-            },
+            }
         })
 
         MHA = L.geoJson.ajax("assets/Mandatory_Housing_Affordability__MHA__Zones.geojson", {
